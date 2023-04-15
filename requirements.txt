@@ -1,0 +1,17 @@
+Tasks:
+Create a database model for a Product management system. Which can have products with nested categories ( Example: Electronics>Accessories>Wearable Accessories>Smart Watch ) and Attributes (Example: Size:X,L,XL, Color:Red, Blue, Green).
+Each Category can have only one parent category. 
+Create a simple CRUD operation for these categories and attributes and expose that via REST Api.
+If the user deactivates a category then all corresponding child categories and categories product must be deactivated automatically.
+Make a product Api with category and attributes and other common fields.
+A single category can have multiple products and a single product can have multiple categories.
+Get all products by category and status, search products, update product, get single product with all details api.
+
+Technology:
+NodeJS
+MySQL (Query Builder Knex)
+Typescript
+ExpressJS
+REST
+Git (for version control and code sharing)
+README.md file for basic deployment documentation
