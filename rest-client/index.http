@@ -7,7 +7,8 @@ POST http://localhost:5000/category
 Content-Type: application/json 
 
 { 
-  "title": "electronics"
+  "title": "wearables",
+  "parent_id": 1
 }
 ###
 
@@ -29,4 +30,8 @@ Content-Type: application/json
   "id": 1,
   "newName": "electronics"
 }
+###
+
+# delete product category
+DELETE  http://localhost:5000/category/1
 ###

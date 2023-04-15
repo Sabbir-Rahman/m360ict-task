@@ -1,6 +1,6 @@
 export interface ProductCategory {
   title: String,
-  parentId?: Number,
+  parent_id?: Number,
 }
 
 export interface ProductCategoryByNameEdit {

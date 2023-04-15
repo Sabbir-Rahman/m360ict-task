@@ -54,5 +54,20 @@ async function editCategoryById(
   }
 }
 
+async function deleteCategoryById(
+  productId: string
+): Promise<any | Error> {
+  try {
+    const editCategory = knex('products_category')
+      .where('id', productId)
+      .del()
 
-export default { getAllProductCategory, createProductCategory,editProductCategoryByName,editCategoryById }
+    return editCategory
+  } catch (err) {
+    console.log(err)
+    return new Error(String(err))
+  }
+}
+
+
+export default { getAllProductCategory, createProductCategory,editProductCategoryByName,editCategoryById, deleteCategoryById }
