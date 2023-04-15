@@ -10,3 +10,23 @@ Content-Type: application/json
   "title": "electronics"
 }
 ###
+
+# 2-edit product category by name
+PUT http://localhost:5000/category/byname
+Content-Type: application/json 
+
+{ 
+  "oldName": "electronics",
+  "newName": "electronics edit"
+}
+###
+
+# 3-edit product category by id
+PUT http://localhost:5000/category/byid
+Content-Type: application/json 
+
+{ 
+  "id": 1,
+  "newName": "electronics"
+}
+###

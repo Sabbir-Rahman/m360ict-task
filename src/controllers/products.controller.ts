@@ -49,4 +49,54 @@ const createProductsCategory = async (
   res.status(response.statusCode).json(response)
 }
 
-export default { getAllProductsCategory, createProductsCategory }
+const editProductCategoryByName = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  const response = {
+    isSuccess: false,
+    statusCode: 400,
+    message: 'Edit product category not successful',
+    developerMessage: '',
+    isReadOnly: false,
+    data: {},
+  }
+
+  const data = await productsService.editProductCategoryByName(req.body)
+  if (data instanceof Error) {
+    response.developerMessage = data.message
+  } else {
+    response.statusCode = 200
+    response.isSuccess = true
+    response.message = 'Edit product category successful'
+    response.data = data
+  }
+  res.status(response.statusCode).json(response)
+}
+
+const editProductCategoryById = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  const response = {
+    isSuccess: false,
+    statusCode: 400,
+    message: 'Edit product category not successful',
+    developerMessage: '',
+    isReadOnly: false,
+    data: {},
+  }
+
+  const data = await productsService.editCategoryById(req.body)
+  if (data instanceof Error) {
+    response.developerMessage = data.message
+  } else {
+    response.statusCode = 200
+    response.isSuccess = true
+    response.message = 'Edit product category successful'
+    response.data = data
+  }
+  res.status(response.statusCode).json(response)
+}
+
+export default { getAllProductsCategory, createProductsCategory, editProductCategoryById,editProductCategoryByName }

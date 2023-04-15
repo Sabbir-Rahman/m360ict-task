@@ -1,4 +1,4 @@
-import { ProductCategory } from '../interfaces/productCategory.interfaces'
+import { ProductCategory, ProductCategoryByIdEdit, ProductCategoryByNameEdit } from '../interfaces/productCategory.interfaces'
 
 const knex = require('../db/db')
 
@@ -15,9 +15,39 @@ async function getAllProductCategory(): Promise<any|Error> {
 
 async function createProductCategory(productCategoryObj: ProductCategory): Promise<any | Error> {
   try {
-    const allCategory = knex('products_category').insert(productCategoryObj)
+    const createCategory = knex('products_category').insert(productCategoryObj)
 
-    return allCategory
+    return createCategory
+  } catch (err) {
+    console.log(err)
+    return new Error(String(err))
+  }
+}
+
+async function editProductCategoryByName(
+  productCategoryByNameEditObj: ProductCategoryByNameEdit
+): Promise<any | Error> {
+  try {
+    const editCategory = knex('products_category')
+      .where('title', productCategoryByNameEditObj.oldName)
+      .update({ title: productCategoryByNameEditObj.newName })
+
+    return editCategory
+  } catch (err) {
+    console.log(err)
+    return new Error(String(err))
+  }
+}
+
+async function editCategoryById(
+  productCategoryByIdEditObj: ProductCategoryByIdEdit
+): Promise<any | Error> {
+  try {
+    const editCategory = knex('products_category')
+      .where('id', productCategoryByIdEditObj.id)
+      .update({ title: productCategoryByIdEditObj.newName })
+
+    return editCategory
   } catch (err) {
     console.log(err)
     return new Error(String(err))
@@ -25,4 +55,4 @@ async function createProductCategory(productCategoryObj: ProductCategory): Promi
 }
 
 
-export default { getAllProductCategory, createProductCategory }
+export default { getAllProductCategory, createProductCategory,editProductCategoryByName,editCategoryById }
