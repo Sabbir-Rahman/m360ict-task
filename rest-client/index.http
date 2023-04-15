@@ -1,0 +1,12 @@
+# view product category
+GET http://localhost:5000/category
+###
+
+# 1-create product category
+POST http://localhost:5000/category
+Content-Type: application/json 
+
+{ 
+  "title": "electronics"
+}
+###
