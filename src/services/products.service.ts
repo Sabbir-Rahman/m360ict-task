@@ -54,6 +54,35 @@ async function editCategoryById(
   }
 }
 
+async function deactivateProductCategory(
+  productCategoryId: string
+): Promise<any | Error> {
+  try {
+    
+      const test = knex
+        .withRecursive('ancestors', ['id', 'title'], (qb: any) => {
+          qb.select('id', 'title')
+            .from('products_category')
+            .where('id', 2)
+            .unionAll((qb: any) => {
+              qb.select('products_category.id', 'products_category.title')
+                .from('products_category')
+                .join(
+                  'ancestors',
+                  'products_category.id',
+                  'products_category.parent_id'
+                )
+            })
+        })
+        .select('*')
+        .from('ancestors')
+    return test
+  } catch (err) {
+    console.log(err)
+    return new Error(String(err))
+  }
+}
+
 async function deleteCategoryById(
   productId: string
 ): Promise<any | Error> {
@@ -70,4 +99,4 @@ async function deleteCategoryById(
 }
 
 
-export default { getAllProductCategory, createProductCategory,editProductCategoryByName,editCategoryById, deleteCategoryById }
+export default { getAllProductCategory, createProductCategory,editProductCategoryByName,editCategoryById, deleteCategoryById, deactivateProductCategory }

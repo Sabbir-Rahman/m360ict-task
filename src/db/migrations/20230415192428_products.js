@@ -7,6 +7,7 @@ exports.up = function (knex) {
     .createTable('products_category', (table) => {
       table.increments('id').unsigned().notNullable()
       table.string('title').notNullable()
+      table.boolean('isActive').defaultTo(true)
       table.integer('parent_id').unsigned().defaultTo(null)
       table.primary(['id'])
       table

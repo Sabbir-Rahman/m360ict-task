@@ -7,8 +7,8 @@ POST http://localhost:5000/category
 Content-Type: application/json 
 
 { 
-  "title": "wearables",
-  "parent_id": 1
+  "title": "watch",
+  "parent_id": 3
 }
 ###
 
@@ -34,4 +34,10 @@ Content-Type: application/json
 
 # delete product category
 DELETE  http://localhost:5000/category/1
+###
+
+# 1-deactivate product category
+POST http://localhost:5000/category/deactivate/5
+Content-Type: application/json 
+
 ###

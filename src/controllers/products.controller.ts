@@ -99,6 +99,31 @@ const editProductCategoryById = async (
   res.status(response.statusCode).json(response)
 }
 
+const deactivateProductCategory = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  const response = {
+    isSuccess: false,
+    statusCode: 400,
+    message: 'Deactivate product category not successful',
+    developerMessage: '',
+    isReadOnly: false,
+    data: {},
+  }
+
+  const data = await productsService.deactivateProductCategory(req.params.id)
+  if (data instanceof Error) {
+    response.developerMessage = data.message
+  } else {
+    response.statusCode = 200
+    response.isSuccess = true
+    response.message = 'Deactivate product category successful'
+    response.data = data
+  }
+  res.status(response.statusCode).json(response)
+}
+
 const deleteProductCategoryById = async (
   req: Request,
   res: Response
@@ -124,4 +149,4 @@ const deleteProductCategoryById = async (
   res.status(response.statusCode).json(response)
 }
 
-export default { getAllProductsCategory, createProductsCategory, editProductCategoryById,editProductCategoryByName, deleteProductCategoryById }
+export default { getAllProductsCategory, createProductsCategory, editProductCategoryById,editProductCategoryByName, deleteProductCategoryById, deactivateProductCategory }
